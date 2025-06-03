@@ -1,11 +1,10 @@
-from aminoAcid import aminoAcid, amino_acids
-
+import amino_acids # type: ignore
 class Protein:
     def __init__(self, name, amino_acid_composition):
         self.name = name
         self.amino_acid_composition = amino_acid_composition
 
-def create_proteins_from_file(file_path, amino_acids):
+def create_proteins_from_file(file_path):
     proteins = []
 
     try:

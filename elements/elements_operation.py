@@ -1,5 +1,5 @@
-from elements import Elements
-from sympy import Eq, symbols, solve
+import elements
+from sympy import Eq, symbols, solve # type: ignore
 
 def calculate_molar_mass(formula, elements_dict):
     molar_mass = 0

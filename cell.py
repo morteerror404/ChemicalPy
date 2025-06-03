@@ -1,12 +1,11 @@
-from aminoAcid import aminoAcid
-from protein import protein
+import AminoAcids, protein
 
 class Cell:
-    def __init__(self, name, proteins):
+    def __init__(self, name, protein):
         self.name = name
-        self.proteins = proteins
+        self.protein = protein
 
-def create_cells_from_file(file_path, amino_acids, proteins):
+def create_cells_from_file(file_path, AminoAcids, protein):
     cells = []
 
     try:
@@ -15,8 +14,8 @@ def create_cells_from_file(file_path, amino_acids, proteins):
                 data = line.strip().split(',')
                 name = data[0]
                 protein_names = data[1:]
-                cell_proteins = [protein for protein in proteins if protein.name in protein_names]
-                cell = Cell(name, cell_proteins)
+                cell_protein = [protein for protein in protein if protein.name in protein_names]
+                cell = Cell(name, cell_protein)
                 cells.append(cell)
     except FileNotFoundError:
         print(f"File {file_path} not found.")
@@ -26,11 +25,12 @@ def create_cells_from_file(file_path, amino_acids, proteins):
     return cells
 
 file_path = 'cells.csv'
-cells = create_cells_from_file(file_path, amino_acids, proteins)
+cells = create_cells_from_file(file_path, AminoAcids, protein)
 
-def calculate_cell_protein_mass(cell, amino_acids):
+def calculate_cell_protein_mass(cell, AminoAcids):
     total_mass = 0
-    for protein in cell.proteins:
-        total_mass += sum(amino_acid.molecular_weight for amino_acid in amino_acids if um amino_acid.name in protein.amino_acid_composition)
+    for protein in cell.proteins:  # Assuming it's 'proteins' not 'protein'
+        total_mass += sum(amino_acid.molecular_weight 
+                         for amino_acid in AminoAcids 
+                         if amino_acid.name in protein.amino_acid_composition)
     return total_mass
-
